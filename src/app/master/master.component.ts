@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../user.service';
+import { StudentComponent } from '../student/student.component';
 
 @Component({
   selector: 'app-master',
@@ -10,9 +11,12 @@ export class MasterComponent implements OnInit {
 
   users: any[] = []; 
   searchTerm: string = ''; 
+
   constructor(private service: UserService) {}
 
-  
+  @ViewChild(StudentComponent)
+  stuComp!: StudentComponent
+
   ngOnInit() {
     this.getData();
   }
@@ -25,7 +29,6 @@ export class MasterComponent implements OnInit {
     });
   }
 
-  
   filteredUsers() {
     if (!this.searchTerm) {
       return this.users; 
@@ -36,10 +39,21 @@ export class MasterComponent implements OnInit {
   }
 
   addUser(event:any) {
-    this.service.postUser(event).subscribe(data => this.getData())
+    this.service.postUser(event).subscribe(data => this.getData());
   }
 
   remove(index: number) {
     this.users.splice(index, 1); 
+  }
+
+  edittUser(user: any, i: number) {
+    this.stuComp.userForm.setValue({
+      name: user.name,
+      username: user.username,
+      email: user.email,
+      phone: user.phone,
+      website: user.website,
+      address: user.address  
+    });
   }
 }

@@ -39,7 +39,7 @@
               <p>Catch Phrase: {{ user.company.catchPhrase }}</p>
               <p>BS: {{ user.company.bs }}</p>
             </td> -->
-            <td><button>EDIT</button></td>
+            <td><button (click)="edittUser(user, i)">EDIT</button></td>
             <td><button (click)="remove(i)">DELETE</button></td>
           </tr>
       </tbody>
