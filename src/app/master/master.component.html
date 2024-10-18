@@ -1,0 +1,47 @@
+<app-student (onAdd)="addUser($event)"></app-student>
+
+<div>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search by name..." />
+  </div>
+  
+  <table>
+      <thead>
+          <tr>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>USER NAME</th>
+          <th>EMAIL</th>
+          <th>ADDRESS</th>
+          <th>PHONE</th>
+          <th>WEBSITE</th>
+          <th>COMPANY</th>
+          <th>EDIT</th>
+          <th>DELETE</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let user of filteredUsers(); index as i">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <!-- <td>
+              <p>Street: {{ user.address.street }}</p>
+              <p>Suite: {{ user.address.suite }}</p>
+              <p>City: {{ user.address.city }}</p>
+              <p>Zipcode: {{ user.address.zipcode }}</p>
+            </td> -->
+            <td>{{user.address}}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.website }}</td>
+            <!-- <td>
+              <p>Name: {{ user.company.name }}</p>
+              <p>Catch Phrase: {{ user.company.catchPhrase }}</p>
+              <p>BS: {{ user.company.bs }}</p>
+            </td> -->
+            <td><button>EDIT</button></td>
+            <td><button (click)="remove(i)">DELETE</button></td>
+          </tr>
+      </tbody>
+  </table>
+  
